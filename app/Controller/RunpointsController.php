@@ -15,11 +15,31 @@ class RunpointsController extends AppController {
 
 	}
 
+	public function mapuser() {
+		if ($this->request->is('get'))
+			$id = $this->request->query['id'];
+		else
+			return;
+
+		$points = $this->Runpoint->find('all', array(
+		    'conditions' => array('Runpoint.userid' => $id)));
+		foreach ($points as $p) {
+			if (preg_match('/\((\d+\.?\d*) (\d+\.?\d*)\)/', $p['Runpoint']['latlngtxt'], $matches)) {
+				$np[] = array('Y' => $matches[1], 'X' => $matches[2]);
+			} else {
+				print_r($p);
+			}
+		}
+
+		$this->set('runpoints', $np);
+		$this->layout = 'openlayer';
+	}
+
 	public function map() {
 		$points = $this->Runpoint->find('all');
 		foreach ($points as $p) {
 			if (preg_match('/\((\d+\.?\d*) (\d+\.?\d*)\)/', $p['Runpoint']['latlngtxt'], $matches)) {
-				$np[] = array('Y' => $matches[1], 'X' => $matches[2]);
+				$np[] = array('Y' => $matches[1], 'X' => $matches[2], 'user'=>$p['Runpoint']['userid']);
 			} else {
 				print_r($p);
 			}

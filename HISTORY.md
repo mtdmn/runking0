@@ -4,13 +4,21 @@ Running Kingdom
 2013.7.28 at library
 --------------------
 * 画面遷移イメージを作成した。紙ベース。
-* TODO: view mapで複数ユーザを色分けしながら表示するようにしたい。
+* view mapで複数ユーザを色分けしながら表示するようにした。
 	* そのためにはもう一人ぐらいユーザを追加。
-	* 追加したけど、fitnessActivityをfetchできなくなっている。何故だ？runkeeperのアプリケーションの設定で、fitness activityを読み込む権限が必要だった。
+	* 7色をjsで定義して、userid%7で回すようにした。
+	* 全ユーザを表示するapi(map)とユーザ指定で表示するapi(mapuser)を定義。
+* runkeeperユーザを追加したけど、fitnessActivityをfetchできなくなっていた。runkeeperのアプリケーションの設定で、fitness activityを読み込む権限が必要だった。
 * パスワード情報が平文で書かれているので、どっかのファイルにまとめてそのファイルをアップしないようにしよう。app/Lib/runkeeper_settings.php にまとめた。
 * 既存のユーザがauthorizeしたときにNULLでuserテーブルにアカウントが追加されてしまうバグを発見したので、authorizeでerrorが帰ってきた時には何もしない処理を追加。
 * phpmyadminのtimeoutを延長するconfigを入れた。
-* repogitoryの初期化。
+* repositoryの初期化。
+* OpenLayers.Vectorのデフォルト値を発見。 http://dev.openlayers.org/releases/OpenLayers-2.7/doc/apidocs/files/OpenLayers/Feature/Vector-js.html
+* TODO: twitter bootstrapとcakephpってどうやって統合すればいいのか？
+* TODO: 自分の領域はわかりやすく、同じ色もしくは濃い色にしたい。
+* TODO: マップをグリグリ動かした時に、そのマップに表示されるユーザのランキングを表示したい。
+* TODO: マップのboxをクリックしたときにそのユーザをポップアップするようにしたい。
+* TODO: 次はサイト全体の作り込みかな。
 
 2013.7.13 at library
 --------------------
