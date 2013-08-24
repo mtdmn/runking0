@@ -27,6 +27,9 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 		<?php echo $cakeDescription ?>:
 		<?php echo $title_for_layout; ?>
 	</title>
+	<?php echo $this->Html->css('bootstrap.min'); ?>
+	<?php echo $this->Html->css('bootstrap-responsive.min'); ?>
+	<?php echo $this->Html->script('bootstrap.min'); ?>
 	<?php
 		echo $this->Html->meta('icon');
 
@@ -38,7 +41,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 	?>
 </head>
 <body>
-	<div id="container">
+	<div id="container" class="container">
 		<div id="header">
 			<h1><?php echo $this->Html->link($cakeDescription, 'http://cakephp.org'); ?></h1>
 		</div>

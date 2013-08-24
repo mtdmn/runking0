@@ -26,6 +26,9 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 		<?php echo $cakeDescription ?>:
 		<?php echo $title_for_layout; ?>
 	</title>
+        <?php echo $this->Html->css('bootstrap.min'); ?>
+        <?php echo $this->Html->css('bootstrap-responsive.min'); ?>
+        <?php echo $this->Html->script('bootstrap.min'); ?>
 	<?php
 		echo $this->Html->meta('icon');
 
@@ -39,12 +42,39 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 		echo $this->fetch('css');
 		echo $this->fetch('script');
 	?>
+    <style>
+      body {
+        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+      }
+    </style>
+
 </head>
 <body>
-	<div id="container">
-		<div id="header">
-			<h1><?php echo $this->Html->link($cakeDescription, 'http://cakephp.org'); ?></h1>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="brand" href="#">Running Kingdom</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li><a href="#">FEED</a></li>
+              <li class="active"><a href="#about">MAP</a></li>
+              <li><a href="#contact">ABOUT</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+	<div id="container" class="container" align="center">
+		<div class="hero-unit">
+		    <h1>Running Kingdom Map</h1>
 		</div>
+
 		<div id="content">
 
 			<?php echo $this->Session->flash(); ?>

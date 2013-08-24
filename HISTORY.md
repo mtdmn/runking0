@@ -1,6 +1,15 @@
 Running Kingdom
 =======
 
+2013.8.24 at library
+--------------------
+* 完全に放置してしまった。やるべきことを整理してキャッチアップしよう。
+* cakephp+twitterbootstrap連携。 http://otukutun.hatenablog.com/entry/2013/04/20/103918 のまま実行。
+	* しかし使い方がわからない。bake? submodule?
+* openlayer.ctpを編集して、ヘッダーを足したりcontainerをclass指定したりしてみた。
+* TODO: openlayer.ctpに書く部分と共通化して書く部分を分けていこう。
+
+
 2013.7.28 at library
 --------------------
 * 画面遷移イメージを作成した。紙ベース。
@@ -16,7 +25,7 @@ Running Kingdom
 * OpenLayers.Vectorのデフォルト値を発見。 http://dev.openlayers.org/releases/OpenLayers-2.7/doc/apidocs/files/OpenLayers/Feature/Vector-js.html
 * TODO: twitter bootstrapとcakephpってどうやって統合すればいいのか？
 * TODO: 自分の領域はわかりやすく、同じ色もしくは濃い色にしたい。
-* TODO: マップをグリグリ動かした時に、そのマップに表示されるユーザのランキングを表示したい。
+* TODO: マップをグリグリ動かした時に、そのマップに表示されるユーザのランキングを表示したい。(ajax化)
 * TODO: マップのboxをクリックしたときにそのユーザをポップアップするようにしたい。
 * TODO: 次はサイト全体の作り込みかな。
 
