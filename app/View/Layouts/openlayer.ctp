@@ -71,9 +71,10 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
     </div>
 
 	<div id="container" class="container" align="center">
-		<div class="hero-unit">
+<!--		<div class="hero-unit">
 		    <h1>Running Kingdom Map</h1>
 		</div>
+-->
 
 		<div id="content">
 

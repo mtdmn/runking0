@@ -12,6 +12,20 @@ class UsersController extends AppController {
 		$this->set('users', $this->User->find('all'));
 	}
 
+	public function login() {
+		$this->layout = 'bootstrap';
+	}
+
+	public function login_callback() {
+		if ($this->request->is('get')) {
+			// one time login password is returned as code.
+			$code = $this->request->query['code'];
+		}
+		$this->get_token_from_code($code,"http://".$_SERVER['HTTP_HOST']."/cakephp/users/login_callback");
+
+		$this->set('token', $this->RK_access_token);
+	}
+
     public function authorize() {
         $this->redirect('https://runkeeper.com/apps/authorize?'.
 			'client_id='.RK_APP_ID.
@@ -21,22 +35,13 @@ class UsersController extends AppController {
 			);
     }
 
-    public function callback() {
-		if (array_key_exists('error', $this->request->query)) {
-			$this->set('contents', "authorization failed: ".$this->request->query['error']);
-			return;
-		}
-
-		if ($this->request->is('get')) {
-			$code = $this->request->query['code'];
-		}
-
+	public function get_token_from_code($code,$callback) {
 		$data = array(
 			'grant_type' => 'authorization_code',
 			'code' => $code,
 			'client_id' => RK_APP_ID,
 			'client_secret' => RK_APP_SECRET,
-			'redirect_uri' => 'http://' . $_SERVER['HTTP_HOST'].'/cakephp/users/callback'
+			'redirect_uri' => $callback
 		);
 
 		$headers = array(
@@ -56,6 +61,19 @@ class UsersController extends AppController {
 		$token_json = file_get_contents($url, false, stream_context_create($options));
 		$obj = json_decode($token_json);
 		$this->RK_access_token = $obj->{'access_token'};
+	}
+
+    public function callback() {
+		if (array_key_exists('error', $this->request->query)) {
+			$this->set('contents', "authorization failed: ".$this->request->query['error']);
+			return;
+		}
+
+		if ($this->request->is('get')) {
+			$code = $this->request->query['code'];
+		}
+
+		$this->get_token_from_code($code, 'http://' . $_SERVER['HTTP_HOST'].'/cakephp/users/callback');
 
 		$this->loadRkUserData();
 

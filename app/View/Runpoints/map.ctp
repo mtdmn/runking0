@@ -53,7 +53,7 @@
 	document.body.onload=init; 
 </script>
 
-<h1>Your Kingdom MAP</h1>
+<?php echo $this->Html->image('runking_banner.png',array('alt' =>'runking banner')); ?>
 <div id="tags">
 		box, vector, annotation, light
 </div>
