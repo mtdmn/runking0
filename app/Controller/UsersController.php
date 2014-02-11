@@ -14,7 +14,7 @@ class UsersController extends AppController {
 
     public function authorize() {
         $this->redirect('https://runkeeper.com/apps/authorize?'.
-			RK_APP_ID.
+			'client_id='.RK_APP_ID.
 			'&redirect_uri='.
 			'http://' . $_SERVER['HTTP_HOST'].'/cakephp/users/callback'.
 			'&response_type=code'
