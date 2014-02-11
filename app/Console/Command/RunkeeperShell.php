@@ -22,7 +22,7 @@ class RunkeeperShell extends AppShell {
 				        'conditions' => array('rkactid' => $act['actid'])));
 				if ($result) continue;
 				$this->Workout->create( array("Workout"=> array(
-					"userid" => $u['User']['id'],
+					"user_id" => $u['User']['id'],
 					"rkactid" => $act['actid'],
 					"starttime" => $mytime,
 					"importtime" => $nowtime,
