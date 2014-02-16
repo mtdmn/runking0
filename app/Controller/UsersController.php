@@ -10,6 +10,10 @@ class UsersController extends AppController {
 
 	public function index() {
 		$this->set('users', $this->User->find('all'));
+		print_r($this->Session->read('User.userid'));
+		print_r($this->Session->read('User.rktoken'));
+		print_r($this->Session->read('User.rkname'));
+
 	}
 
 	public function login() {
@@ -23,7 +27,16 @@ class UsersController extends AppController {
 		}
 		$this->get_token_from_code($code,"http://".$_SERVER['HTTP_HOST']."/cakephp/users/login_callback");
 
+		$this->set('code', $code);
 		$this->set('token', $this->RK_access_token);
+		// get userid from access_token
+		$_user = $this->User->find('first',
+			array('conditions' => array('User.rktoken' => $this->RK_access_token))
+		);
+		// session start
+		$this->Session->write('User.userid', $_user['User']['id']);
+		$this->Session->write('User.rktoken', $this->RK_access_token);
+		$this->Session->write('User.rkname', $_user['User']['rkname']);
 	}
 
     public function authorize() {
@@ -35,7 +48,7 @@ class UsersController extends AppController {
 			);
     }
 
-	public function get_token_from_code($code,$callback) {
+	private function get_token_from_code($code,$callback) {
 		$data = array(
 			'grant_type' => 'authorization_code',
 			'code' => $code,
@@ -102,6 +115,15 @@ class UsersController extends AppController {
 			$this->User->save($data);
 			$this->set('contents', $this->RK_user_json->{'userID'});
 		}
+
+		// get userid from access_token
+		$_user = $this->User->find('first',
+			array('conditions' => array('User.rktoken' => $this->RK_access_token))
+		);
+		// session start
+		$this->Session->write('User.userid', $_user['User']['id']);
+		$this->Session->write('User.rktoken', $this->RK_access_token);
+		$this->Session->write('User.rkname', $_user['User']['rkname']);
     }
 
 	private function loadRkUserData() {

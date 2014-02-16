@@ -6,7 +6,10 @@ class RunpointsController extends AppController {
 	public $components = array('Session');
 
 	public function index() {
-		$this->set('runpoints', $this->Runpoint->find('all'));
+		$userid = $this->Session->read('User.userid');
+        $this->set('runpoints', $this->Runpoint->find('all', 
+                        array('conditions'=> array('Runpoint.userid'=>$userid))
+        ));
 	}
 
 	public function view($id) {
@@ -16,10 +19,7 @@ class RunpointsController extends AppController {
 	}
 
 	public function mapuser() {
-		if ($this->request->is('get'))
-			$id = $this->request->query['id'];
-		else
-			return;
+		$id = $this->Session->read('User.userid');
 
 		$points = $this->Runpoint->find('all', array(
 		    'conditions' => array('Runpoint.userid' => $id)));

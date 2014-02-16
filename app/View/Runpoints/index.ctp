@@ -14,7 +14,6 @@
 
     <?php foreach ($runpoints as $point): ?>
     <tr>
-        <td><?php echo $point['Runpoint']['runpoint_id']; ?></td>
         <td>
 <?php 
 		echo $point['Runpoint']['latlngtxt']; 

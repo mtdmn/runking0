@@ -2,6 +2,9 @@
 
 class WorkoutsController extends AppController {
 	public function index() {
-		$this->set('workouts', $this->Workout->find('all'));
+		$userid = $this->Session->read('User.userid');
+		$this->set('workouts', $this->Workout->find('all', 
+			array('conditions'=> array('Workout.user_id'=>$userid))
+		));
 	}
 }
